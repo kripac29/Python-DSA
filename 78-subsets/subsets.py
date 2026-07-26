@@ -1,20 +1,23 @@
 class Solution(object):
     def subsets(self, nums):
-        result=[]
-        subset=[]
-        def backtrack(index):
-            if index==len(nums):
-                result.append(subset[:])
-                return
-            #take
-            subset.append(nums[index])
-            backtrack(index+1)
-            #pop
-            subset.pop()
-            #don't take
-            backtrack(index+1)
-        backtrack(0)
+        n = len(nums)
+        total_subsets = 1 << n
+        result = []
+
+        for num in range(0, total_subsets):
+            lst = []
+
+            for i in range(0, n):
+                if (num & (1 << i)) != 0:
+                    lst.append(nums[i])
+
+            result.append(lst)
+
         return result
+
+
+
+
 
 
        
